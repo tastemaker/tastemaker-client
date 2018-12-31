@@ -7,6 +7,7 @@ import {
 export const reducerKey = 'user';
 
 const initialState = {
+    isAuthLoading: false,
     accessToken: null,
     userSignupErrors: {},
 };

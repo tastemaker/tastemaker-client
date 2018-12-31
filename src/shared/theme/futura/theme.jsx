@@ -45,6 +45,10 @@ const inputField = css`
 
     &:hover {
         border-color: white;
+
+        fieldset {
+            border-color: white;
+        }
     }
 
     label {
@@ -52,18 +56,42 @@ const inputField = css`
     }
 
     >div {
+        color: white;
+
+        &:hover {
+            border-color: ${silver};
+
+            fieldset {
+                border-color: ${silver} !important;
+            }
+        }
         &:before {
-            border-color: white !important;
+            border-color: ${silver} !important;
             border-style: none none dashed none;
         }
         &:after {
-            border-color: white;
+            border-color: ${silver};
         }
+    }
+
+    fieldset {
+        border-color: ${silver};
     }
 
     input {
         color: white;
         caret-color: white;
+        font-family: ${font};
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover, 
+        &:-webkit-autofill:focus, 
+        &:-webkit-autofill:active {
+
+            color: white !important;
+            -webkit-text-fill-color: white !important;
+            -webkit-box-shadow: 0 0 0px 1000px ${shaft} inset !important;
+        }
     }
 `;
 

@@ -11,6 +11,7 @@ const Header = styled.header`
     height: 10.20vh;
 
     + section {
+        margin-top: 15.2vh;
         padding-bottom: 10.20vh;
     }
 `;

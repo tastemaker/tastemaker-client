@@ -5,9 +5,11 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { connect } from 'react-redux';
 import { createGlobalStyle } from "styled-components";
 
+import AppHelmet from 'shared/components/Header/AppHelmet';
+import PrivateRoute from 'shared/components/PrivateRoute';
 import HomePage from 'screens/HomePage/HomePage';
 import StartProject from 'screens/Project/StartProject';
-import AppHelmet from 'shared/components/Header/AppHelmet';
+import Signup from './Signup';
 
 
 const SCREEN_TRANSITION_TIME_MS = 100;
@@ -35,18 +37,24 @@ class App extends Component {
         return [
             <AppHelmet key="app-helmet" />,
             <GlobalStyle key="fade-styles" />,
-            <TransitionGroup key="transition-group" component={null}>
-                <CSSTransition 
-                key={location.key} 
-                classNames="fade"
-                timeout={SCREEN_TRANSITION_TIME_MS}>
-                    <Switch location={ location }>
+            // NOTE: Transition groups lead to multiple redirects and the message
+            // "You tried to redirect to the same route you're currently on"
+            // When used in conjunction with <Redirect /> (q.v. <PrivateRoute />)
+            // More details here: https://github.com/ReactTraining/react-router/issues/6076
+            // Disabling for now...
+            // <TransitionGroup key="transition-group" component={null}>
+            //     <CSSTransition 
+            //     key={location.key} 
+            //     classNames="fade"
+            //     timeout={SCREEN_TRANSITION_TIME_MS}>
+                    <Switch key="route-switch" location={ location }>
                         <Route exact path="/" component={ HomePage } />
-                        <Route path="/project/start" component={ StartProject } />
+                        <Route exact path="/signup" component={ Signup } />
+                        <PrivateRoute path="/project/start" component={ StartProject } />
                         <Route render={() => <div>Not Found</div>} />
                     </Switch>
-                </CSSTransition>
-            </TransitionGroup>
+            //     </CSSTransition>
+            // </TransitionGroup>
             ];
     }
 }

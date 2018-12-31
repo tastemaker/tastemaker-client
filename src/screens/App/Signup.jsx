@@ -16,12 +16,11 @@ import InputField from 'shared/components/InputField';
 const Container = styled.article`
     background-color: ${props => props.theme.colors.shaft};
     position: absolute;
-    overflow: scroll;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 0;
+    z-index: 1;
     color: ${ props => props.theme.colors.white };
 `;
 
@@ -66,7 +65,7 @@ const Navigation = styled.div`
     margin-top: 37px;
 `;
 
-class StartProject extends Component {
+class Login extends Component {
 
     state = {
         email: ""
@@ -83,6 +82,10 @@ class StartProject extends Component {
     }
 
     render() {
+        const { userSignupErrors } = this.props;
+
+        const isSignupError = (userSignupErrors.email && 0 <= userSignupErrors.email.length);
+        
         return (
             <Container>
                 <Header key="main-header" light="true" />
@@ -95,7 +98,28 @@ class StartProject extends Component {
                     <Grid flexDirection="row" justifyContent="space-between">
                         <Column>
                             <InputForm onSubmit={ (event) => this.handleSubmit(event) }>
-                                <h4>Start Project</h4>
+                                <h4>Enter your email address</h4>
+
+                                <InputField 
+                                    value={ this.state.email }
+                                    onChange={ (event) => this.updateEmail(event) } 
+                                    id="email" 
+                                    type="email" 
+                                    label="Email"
+                                    helperText={ (isSignupError) ? userSignupErrors.email : "" }
+                                    required={true}
+                                    error={ isSignupError }
+                                    variant="outlined"
+                                    fullWidth={true}
+                                    mb={"2.5vh"} />
+
+                                <div className="g-recaptcha" data-theme="dark" data-sitekey="6Lfj94EUAAAAAGYzGbGlSa7PmKE3uBDLnmv6I6FJ"></div>
+
+                                <Navigation>
+                                    <SecondaryButton type="submit">
+                                        Submit
+                                    </SecondaryButton>
+                                </Navigation>
 
                             </InputForm>
                         </Column>
@@ -124,4 +148,4 @@ const mapDispatchToProps = dispatch =>({
     registerUser: (userProps) => dispatch(registerUser(userProps))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(StartProject);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
