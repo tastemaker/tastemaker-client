@@ -2,10 +2,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 
-import Header from 'shared/header/Header';
+import Header from 'shared/components/Header';
+import HeaderGroup from 'shared/components/HeaderGroup';
+import SecondaryButton from 'shared/components/SecondaryButton';
 
 import homeHero from './assets/home-hero.jpg';
 import BritCoLogo from './assets/britco';
@@ -23,6 +24,7 @@ const Container = styled.article`
     width: 100%;
     background: url(${ props => props.backgroundImage }) no-repeat center center;
     background-size: cover;
+    color: ${ props => props.theme.colors.tuna };
 `;
 
 const PressModule = styled.section`
@@ -75,38 +77,13 @@ const PressLink = styled.li`
     }
 `;
 
-const HeaderGroup = styled.hgroup`
-    text-align: center;
-    color: ${ props => props.theme.colors.tuna }
-    margin-top: 25.4vh;
-
-    h2 {
-        font-family: ${ props => props.theme.fontSecondary };
-        font-size: 2.5vw;
-        font-weight: 700;
-        margin-bottom: 6.85vh;
-    }
-
-    h3 {
-        width: 33.33vw;
-        margin: 0 auto;
-        font-size: 1.875vw;
-        line-height: 2.5vw;
-    }
-`;
-
 const CTA = styled.div`
     text-align: center;
     margin-top: 6.85vh;
     font-size: 2.22vh;
 `;
 
-// The && syntax allows this style to take precedence over Material UI's defaults
-const ThemedButton = styled(Button)`
-    && { 
-        ${props => props.theme.secondaryButton}
-    }
-`;
+
 
 export default class HomePage extends Component {
 
@@ -115,7 +92,7 @@ export default class HomePage extends Component {
             <Container backgroundImage={ homeHero }>
                 <Header key="main-header" />
 
-                <HeaderGroup>
+                <HeaderGroup mt={"15.2vh"}>
                     <h2>The best-kept secret in interior design</h2>
                     <h3>Tastemaker is an exclusive community of
                     top interior designers, vetted for quality,
@@ -124,7 +101,7 @@ export default class HomePage extends Component {
                 </HeaderGroup>
 
                 <CTA>
-                    <ThemedButton component={ Link } to="/project/start">Meet Your Designer</ThemedButton>
+                    <SecondaryButton component={ Link } to="/project/start">Meet Your Designer</SecondaryButton>
                 </CTA>
 
                 <PressModule>

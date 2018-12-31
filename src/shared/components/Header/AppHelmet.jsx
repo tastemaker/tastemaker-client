@@ -1,16 +1,28 @@
 
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
+import { connect } from 'react-redux';
 
 import { GOOGLE_ANALYTICS_ID } from "config/app";
+import analytics from 'services/analytics';
 
 
-export default class AppHelmet extends Component {
+class AppHelmet extends Component {
+
+    componentDidMount() {
+        const { location } = this.props;
+        analytics.trackPageView({
+            location: location,
+            isInitialPageLoad: true
+        });
+    }
 
     render() {
         return (
             <Helmet key="mainHelmet">
                 <title>Tastemaker</title>
+
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
                 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-32679143-1"></script>
                 <script>{`
@@ -26,3 +38,12 @@ export default class AppHelmet extends Component {
             );
     }
 }
+
+const mapStateToProps = state => ({
+    location: state.router.location
+});
+
+const mapDispatchToProps = (dispatch) => ({
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppHelmet);

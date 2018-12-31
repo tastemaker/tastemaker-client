@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router'
 
-import customerReducer, { reducerKey as customerReducerKey } from './customer';
+import userReducer, { reducerKey as userReducerKey } from './user';
 
 export default (history) => combineReducers({
     router: connectRouter(history),
-    [customerReducerKey]: customerReducer,
+    [userReducerKey]: userReducer,
 });

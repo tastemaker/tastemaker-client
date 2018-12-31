@@ -11,6 +11,7 @@ import thunk from 'redux-thunk';
 import createRootReducer from './shared/state/reducers';
 import ThemeProvider from './shared/theme/futura/ThemeProvider';
 import App from './screens/App/App';
+import analytics from 'services/analytics';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -30,9 +31,7 @@ const store = createStore(
 // Track pageviews for analytics and scroll to
 // top of page whenever a new location loads.
 history.listen(location => {
-    // store.dispatch(
-    //   analytics.trackPageView({ location, isInitialPageLoad: false })
-    // );
+    analytics.trackPageView({ location, isInitialPageLoad: false })
 
     // Opt out of automatic scroll to top on url change.
     if (location.state && location.state.doNotScrollTop) { return; }

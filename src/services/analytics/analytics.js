@@ -1,10 +1,11 @@
 
-export const trackPageView = ({location, isInitialPageLoad}) => dispatch => {
+import * as googleAnalytics from './google';
 
+export const trackPageView = ({location, isInitialPageLoad}) => {
 
     // Google and FB pixels/tags fire their own pageviews on inital load.
     if (!isInitialPageLoad) {
-        modsyGoogle.trackPageView(location);
+        googleAnalytics.trackPageView(location);
         // facebook pixel automatically tracks all page views except on init
         // we can disable this, but may lose some features
         // "You should leave the listener on and let it track PageViews when you SPA's URL changes.
