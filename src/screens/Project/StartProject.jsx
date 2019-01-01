@@ -9,8 +9,6 @@ import { registerUser } from 'shared/state/actions/user';
 import Header from 'shared/components/Header';
 import HeaderGroup from 'shared/components/HeaderGroup';
 import Flex from 'shared/components/Flex';
-import SecondaryButton from 'shared/components/SecondaryButton';
-import InputField from 'shared/components/InputField';
 
 
 const Container = styled.article`
@@ -60,10 +58,6 @@ const InputForm = styled.form`
     h4 {
         margin-bottom: 37px;
     }
-`;
-
-const Navigation = styled.div`
-    margin-top: 37px;
 `;
 
 class StartProject extends Component {
