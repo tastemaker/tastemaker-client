@@ -101,7 +101,7 @@ export default class HomePage extends Component {
                 </HeaderGroup>
 
                 <CTA>
-                    <SecondaryButton component={ Link } to="/project/start">Meet Your Designer</SecondaryButton>
+                    <SecondaryButton component={ Link } to="/designers">Meet The Designers</SecondaryButton>
                 </CTA>
 
                 <PressModule>

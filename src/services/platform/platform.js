@@ -24,8 +24,10 @@ export const signup = (userProps) => {
 
 export const login = () => {
     return request.get(`${PLATFORM_API_URL}/login`)
-        .then(() => {})
-        .catch(error => {
-            console.log(error); // TODO: bugsnag
+        .then(response => {
+            return response.data;
+        })
+        .catch(payload => {
+            throw new request.ServerError({message: payload, info: payload.response.data.errors});
         });
 }

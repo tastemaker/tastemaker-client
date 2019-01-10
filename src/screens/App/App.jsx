@@ -9,6 +9,8 @@ import PrivateRoute from 'shared/components/PrivateRoute';
 import HomePage from 'screens/HomePage/HomePage';
 import StartProject from 'screens/Project/StartProject';
 import Signup from './Signup';
+import Login from './Login';
+import ResetPassword from './ResetPassword';
 
 
 const SCREEN_TRANSITION_TIME_MS = 100;
@@ -49,7 +51,11 @@ class App extends Component {
                     <Switch key="route-switch" location={ location }>
                         <Route exact path="/" component={ HomePage } />
                         <Route exact path="/signup" component={ Signup } />
-                        <PrivateRoute path="/project/start" component={ StartProject } />
+                        <Route exact path="/login" component={ Login } />
+                        <Route exact path="/reset-password" component={ ResetPassword } />
+                        <PrivateRoute path="/explore" component={ StartProject } />
+                        <PrivateRoute path="/join" component={ StartProject } />
+                        <PrivateRoute path="/designers" component={ StartProject } />
                         <Route render={() => <div>Not Found</div>} />
                     </Switch>
             //     </CSSTransition>

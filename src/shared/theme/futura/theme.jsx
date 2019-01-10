@@ -9,20 +9,27 @@ const shaft = "#313030";
 const white = "#ffffff";
 const gray = "#676767";
 const silver = "#bebebe";
+const coral = "#E36D6D";
 
 export const colors = {
     tuna,
     gray,
     white,
     silver,
-    shaft
+    shaft,
+    coral
 };
 
+// Fonts
 export const font = "proxima-nova, sans-serif";
 export const fontSecondary = "minion-pro, serif";
 export const fontTertiary = "futura-pt-bold, sans-serif";
 export const fontFamilies = [font, fontSecondary, fontTertiary];
 
+// Links
+export const secondaryLinkColor = coral;
+
+// Spacing
 export const rail = "6.77vw";
 
 const secondaryButton = css`
@@ -97,6 +104,7 @@ const inputField = css`
 
 const theme = {
     colors,
+    secondaryLinkColor,
     font,
     fontFamilies,
     fontSecondary,

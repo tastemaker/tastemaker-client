@@ -3,9 +3,6 @@ export const PLATFORM_API_URL = ((nodeEnv) => {
 
     const DEFAULT_URL = "http://localhost:3001";
 
-    // Juan remove
-    console.log(`Node environment is ${nodeEnv}`);
-
     switch (nodeEnv) {
         // case 'development':
         //     return 'https://api.dev.tastemaker.com';

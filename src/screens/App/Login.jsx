@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { rem } from "polished";
 
-import { registerUser } from 'shared/state/actions/user';
+import { loginUser } from 'shared/state/actions/user';
 import SecondaryButton from 'shared/components/SecondaryButton';
 import InputField from 'shared/components/InputField';
 import { SecondaryText } from 'shared/components/Text';
@@ -27,17 +27,22 @@ const Actions = styled.div`
 class Login extends Component {
 
     state = {
-        email: ""
+        email: "",
+        password: ""
     };
 
     updateEmail(event) {
         this.setState({email: event.target.value});
     }
 
+    updatePassword(event) {
+        this.setState({password: event.target.value});
+    }
+
     handleSubmit(event) {
-        const { registerUser } = this.props;
+        const { loginUser } = this.props;
         event.preventDefault();
-        registerUser({email: this.state.email});
+        loginUser({email: this.state.email, password: this.state.password});
     }
 
     render() {
@@ -47,7 +52,7 @@ class Login extends Component {
         
         return (
             <TwoColumnBlackTemplate 
-                cta="Join our community of interior design lovers."
+                cta="Welcome back!"
                 guidanceText="Our Pledge"
                 guidancePoints={
                     [
@@ -59,7 +64,7 @@ class Login extends Component {
                 }>
 
                 <InputForm onSubmit={ (event) => this.handleSubmit(event) }>
-                    <h4>Enter your email address</h4>
+                    <h4>Enter your email address and password</h4>
 
                     <InputField 
                         value={ this.state.email }
@@ -74,8 +79,21 @@ class Login extends Component {
                         fullWidth={true}
                         mb={"2.5vh"} />
 
+                    <InputField 
+                        value={ this.state.password }
+                        onChange={ (event) => this.updatePassword(event) } 
+                        id="password" 
+                        type="password" 
+                        label="Password"
+                        helperText={ (isAuthError) ? userAuthErrors.password : "" }
+                        required={true}
+                        error={ isAuthError }
+                        variant="outlined"
+                        fullWidth={true}
+                        mb={"2.5vh"} />
+
                     <SecondaryText fontStyle="italic" mb="3.5vh" fontSize="80%">
-                        Already a member?  Log in <SecondaryLink to="/login">here</SecondaryLink>.
+                        Looking to join?  Create a new account <SecondaryLink to="/signup">here</SecondaryLink>.
                     </SecondaryText>
 
                     <div className="g-recaptcha" data-theme="dark" data-sitekey="6Lfj94EUAAAAAGYzGbGlSa7PmKE3uBDLnmv6I6FJ"></div>
@@ -96,7 +114,7 @@ const mapStateToProps = state =>({
     userAuthErrors: state.user.userAuthErrors
 });
 const mapDispatchToProps = dispatch =>({
-    registerUser: (userProps) => dispatch(registerUser(userProps))
+    registerUser: (userProps) => dispatch(loginUser(userProps))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
