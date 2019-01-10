@@ -1,25 +1,19 @@
 
-export const PLATFORM_API_URL = ((platformApiUrl, reactAppEnv) => {
-    // For CI testing environment, hardcode a hostname
-    // otherwise this will change in every environment and cause
-    // snapshots to false negative fail.
-    if (process.env.NODE_ENV === 'test') { return 'http://localhost:3001'; }
+export const PLATFORM_API_URL = ((nodeEnv) => {
 
-    if (platformApiUrl) {
-        return platformApiUrl;
-    }
+    const DEFAULT_URL = "http://localhost:3001";
 
-    if (reactAppEnv) {
-        switch (reactAppEnv) {
-            case 'dev':
-                return 'https://api.dev.tastemaker.com';
-            case 'staging':
-                return 'https://api.staging.tastemaker.com';
-            case 'prod':
-                return 'https://api.tastemaker.com';
-            default:
-                return platformApiUrl;
-        }
+    // Juan remove
+    console.log(`Node environment is ${nodeEnv}`);
+
+    switch (nodeEnv) {
+        // case 'development':
+        //     return 'https://api.dev.tastemaker.com';
+        // case 'staging':
+        //     return 'https://api.staging.tastemaker.com';
+        case 'production':
+            return 'https://api.tastemaker.com';
+        default:
+            return DEFAULT_URL;
     }
-    return 'http://localhost:3001';
-})(process.env.REACT_APP_PLATFORM_API_URL, process.env.REACT_APP_ENV);
+})(process.env.NODE_ENV);
