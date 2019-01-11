@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { rem } from "polished";
+import _ from 'lodash';
 
 import { registerUser } from 'shared/state/actions/user';
 import SecondaryButton from 'shared/components/SecondaryButton';
@@ -67,7 +68,7 @@ class Login extends Component {
                         id="email" 
                         type="email" 
                         label="Email"
-                        helperText={ (hasAuthError) ? userAuthErrors.detail.email : "" }
+                        helperText={ _.get(userAuthErrors, "detail.email", "") }
                         required={true}
                         error={ hasAuthError }
                         variant="outlined"

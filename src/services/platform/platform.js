@@ -11,13 +11,7 @@ export const signup = (userProps) => {
             return response.data;
         })
         .catch(payload => {
-
-            console.log(payload.response);
-
             const detail = _.get(payload, "response.data.errors", {});
-
-            console.log(detail);
-
             throw new request.ServerError({message: payload, detail: detail});
         });
 }
