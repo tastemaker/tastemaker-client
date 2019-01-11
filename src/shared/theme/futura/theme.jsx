@@ -9,7 +9,7 @@ const shaft = "#313030";
 const white = "#ffffff";
 const gray = "#676767";
 const silver = "#bebebe";
-const coral = "#E36D6D";
+const coral = "#ff6f61";
 
 export const colors = {
     tuna,

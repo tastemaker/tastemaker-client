@@ -10,7 +10,6 @@ import HomePage from 'screens/HomePage/HomePage';
 import StartProject from 'screens/Project/StartProject';
 import Signup from './Signup';
 import Login from './Login';
-import ResetPassword from './ResetPassword';
 
 
 const SCREEN_TRANSITION_TIME_MS = 100;
@@ -52,7 +51,6 @@ class App extends Component {
                         <Route exact path="/" component={ HomePage } />
                         <Route exact path="/signup" component={ Signup } />
                         <Route exact path="/login" component={ Login } />
-                        <Route exact path="/reset-password" component={ ResetPassword } />
                         <PrivateRoute path="/explore" component={ StartProject } />
                         <PrivateRoute path="/join" component={ StartProject } />
                         <PrivateRoute path="/designers" component={ StartProject } />

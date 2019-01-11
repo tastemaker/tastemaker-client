@@ -23,7 +23,7 @@ export const registerUser = (userProps) => (dispatch, getState) => {
         dispatch(setAccessToken(payload.token));
         dispatch(push('/'));
     }).catch(error => {
-        dispatch(setUserAuthErrors(error.info));
+        dispatch(setUserAuthErrors(error.toJSON()));
     });
 }
 
@@ -32,10 +32,6 @@ export const loginUser = (userProps) => (dispatch, getState) => {
         dispatch(setAccessToken(payload.token));
         dispatch(push('/'));
     }).catch(error => {
-
-        console.log("Setting errors!");
-        console.log(error.info);
-
-        dispatch(setUserAuthErrors(error.info));
+        dispatch(setUserAuthErrors(error.toJSON()));
     });
 }

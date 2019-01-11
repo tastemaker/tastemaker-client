@@ -43,7 +43,7 @@ class Login extends Component {
     render() {
         const { userAuthErrors } = this.props;
 
-        const isAuthError = (userAuthErrors.email && 0 <= userAuthErrors.email.length);
+        const hasAuthError = Object.keys(userAuthErrors).length > 0;
         
         return (
             <TwoColumnBlackTemplate 
@@ -67,9 +67,9 @@ class Login extends Component {
                         id="email" 
                         type="email" 
                         label="Email"
-                        helperText={ (isAuthError) ? userAuthErrors.email : "" }
+                        helperText={ (hasAuthError) ? userAuthErrors.detail.email : "" }
                         required={true}
-                        error={ isAuthError }
+                        error={ hasAuthError }
                         variant="outlined"
                         fullWidth={true}
                         mb={"2.5vh"} />

@@ -67,7 +67,7 @@ const TwoColumnBlackTemplate = (props) => {
                             <h4>{ props.guidanceText }</h4>
                             <ul>
                                 {
-                                    props.guidancePoints.map(point => <li>{point}</li>)
+                                    props.guidancePoints.map((point, idx) => <li key={ `l${idx}` }>{point}</li>)
                                 }
                             </ul>
                         </GuidanceModule>

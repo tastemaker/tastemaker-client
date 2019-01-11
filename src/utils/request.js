@@ -30,10 +30,14 @@ export function put (url, data) {
 }
 
 export class ServerError extends Error {
-    constructor(args) {
-        const { message, fileName, lineNumber, info } = args;
-        super(message, fileName, lineNumber);
+    constructor(...args) {
+        super(...args);
         Error.captureStackTrace(this, ServerError);
+
+        const [ info ] = args;
         this.info = info;
+    }
+    toJSON() {
+        return this.info;
     }
 }

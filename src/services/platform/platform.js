@@ -1,16 +1,9 @@
 
+import _ from 'lodash';
+
 import * as request from 'utils/request';
 import { PLATFORM_API_URL } from 'config/platform';
 
-
-// Juan remove
-export const test = () => {
-    return request.get(`${PLATFORM_API_URL}/test`)
-        .then(() => {})
-        .catch(error => {
-            console.log(error); // TODO: bugsnag
-        });
-}
 
 export const signup = (userProps) => {
     return request.post(`${PLATFORM_API_URL}/signup`, userProps)
@@ -18,16 +11,24 @@ export const signup = (userProps) => {
             return response.data;
         })
         .catch(payload => {
-            throw new request.ServerError({message: payload, info: payload.response.data.errors});
+
+            console.log(payload.response);
+
+            const detail = _.get(payload, "response.data.errors", {});
+
+            console.log(detail);
+
+            throw new request.ServerError({message: payload, detail: detail});
         });
 }
 
-export const login = () => {
-    return request.get(`${PLATFORM_API_URL}/login`)
+export const login = (userProps) => {
+    return request.post(`${PLATFORM_API_URL}/login`, userProps)
         .then(response => {
             return response.data;
         })
         .catch(payload => {
-            throw new request.ServerError({message: payload, info: payload.response.data.errors});
+            const detail = _.get(payload.response.data.errors, {});
+            throw new request.ServerError({message: payload, detail: detail});
         });
 }
