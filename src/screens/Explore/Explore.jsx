@@ -83,26 +83,21 @@ class StartProject extends Component {
 
                 <section>
                     <HeaderGroup>
-                        <h2>Join our community of interior design lovers.</h2>
+                        <h2>What are you looking for today?</h2>
                     </HeaderGroup>
 
                     <Grid flexDirection="row" justifyContent="space-between">
-                        <Column>
+                        <Column style={ {display: "none"} }>
                             <InputForm onSubmit={ (event) => this.handleSubmit(event) }>
                                 <h4>Start Project</h4>
 
                             </InputForm>
                         </Column>
-                        <Column>
-                            <GuidanceModule>
-                                <h4>Our Pledge</h4>
-                                <ul>
-                                    <li>Meet talented designers on our platform and explore their portfolios.</li>
-                                    <li>Our service is free and has no hidden costs.</li>
-                                    <li>No marketing.  We won’t email you about anything other than your project.</li>
-                                    <li>No selling of your data or sharing it without your explicit permission.</li>
-                                </ul>
-                            </GuidanceModule>
+                        <Column style={ {display: "none"} }>
+                            <p>Designers</p>
+                        </Column>
+                        <Column style={ {display: "none"} }>
+                            <p>Designers</p>
                         </Column>
                     </Grid>
                 </section>

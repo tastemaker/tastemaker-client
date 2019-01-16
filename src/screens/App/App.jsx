@@ -7,7 +7,7 @@ import { createGlobalStyle } from "styled-components";
 import AppHelmet from 'shared/components/Header/AppHelmet';
 import PrivateRoute from 'shared/components/PrivateRoute';
 import HomePage from 'screens/HomePage/HomePage';
-import StartProject from 'screens/Project/StartProject';
+import Explore from 'screens/Explore/Explore';
 import Signup from './Signup';
 import Login from './Login';
 
@@ -51,9 +51,9 @@ class App extends Component {
                         <Route exact path="/" component={ HomePage } />
                         <Route exact path="/signup" component={ Signup } />
                         <Route exact path="/login" component={ Login } />
-                        <PrivateRoute path="/explore" component={ StartProject } />
-                        <PrivateRoute path="/join" component={ StartProject } />
-                        <PrivateRoute path="/designers" component={ StartProject } />
+                        <PrivateRoute path="/explore" component={ Explore } />
+                        <PrivateRoute path="/join" component={ Explore } />
+                        <PrivateRoute path="/designers" component={ Explore } />
                         <Route render={() => <div>Not Found</div>} />
                     </Switch>
             //     </CSSTransition>

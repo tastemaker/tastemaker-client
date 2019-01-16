@@ -1,5 +1,6 @@
 
 import { push } from 'connected-react-router';
+import _ from 'lodash';
 
 import platform from 'services/platform';
 import {
@@ -21,7 +22,10 @@ export const setUserAuthErrors = errors => ({
 export const registerUser = (userProps) => (dispatch, getState) => {
     return platform.signup(userProps).then(payload => {
         dispatch(setAccessToken(payload.token));
-        dispatch(push('/'));
+
+        // Get the previous location we were trying to access and go there
+        const next = _.get(getState(), "router.location.state.from.pathname", "/");
+        dispatch(push(next));
     }).catch(error => {
         dispatch(setUserAuthErrors(error.toJSON()));
     });
@@ -30,7 +34,10 @@ export const registerUser = (userProps) => (dispatch, getState) => {
 export const loginUser = (userProps) => (dispatch, getState) => {
     return platform.login(userProps).then(payload => {
         dispatch(setAccessToken(payload.token));
-        dispatch(push('/'));
+
+        // Get the previous location we were trying to access and go there
+        const next = _.get(getState(), "router.location.state.from.pathname", "/");
+        dispatch(push(next));
     }).catch(error => {
         dispatch(setUserAuthErrors(error.toJSON()));
     });
