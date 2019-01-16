@@ -31,27 +31,6 @@ const Column = styled.div`
     flex: 1;
 `;
 
-const GuidanceModule = styled.div`
-    background-color: rgba(255,255,255,0.1);
-    border: 1px solid ${props => props.theme.colors.gray};
-    padding: ${rem("49px")} ${rem("78px")};
-
-    h4 {
-        font-size: 24px;
-        font-weight: 700;
-    }
-
-    ul {
-        margin-top: ${rem("24px")};
-        list-style-type: circle;
-
-        li {
-            margin: ${rem("12px")} 0;
-            line-height: 125%;
-        }
-    }
-`;
-
 const InputForm = styled.form`
     padding: ${rem("49px")} ${rem("78px")};
 
