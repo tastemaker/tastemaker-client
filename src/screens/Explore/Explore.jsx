@@ -62,7 +62,7 @@ class StartProject extends Component {
 
                 <section>
                     <HeaderGroup>
-                        <h2>Coming soon</h2>
+                        <h2>Thank you for signing up!<br/>We&rsquo;ll let you know once the site is ready to explore.</h2>
                     </HeaderGroup>
 
                     <Grid flexDirection="row" justifyContent="space-between">
