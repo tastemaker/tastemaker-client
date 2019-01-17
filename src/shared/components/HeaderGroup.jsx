@@ -24,13 +24,12 @@ const Container = styled.hgroup`
     }
 `;
 
-export default class HeaderGroup extends Component {
+const HeaderGroup = (props) => {
+    return (
+        <Container {...props}>
+            { props.children }
+        </Container>
+        );
+};
 
-    render() {
-        return (
-            <Container {...this.props}>
-                { this.props.children }
-            </Container>
-            );
-    }
-}
+export default HeaderGroup;
