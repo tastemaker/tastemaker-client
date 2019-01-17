@@ -1,5 +1,7 @@
 
 import axios from 'axios';
+import cookie from 'js-cookie';
+
 
 let headers = {
     'Content-Type': 'application/json'
@@ -8,6 +10,18 @@ let headers = {
 export const api = axios.create({
     withCredentials: false
 });
+
+api.interceptors.request.use(
+    config => {
+        if (cookie.get("jwtToken")) {
+            config.headers.Authorization = `JWT ${cookie.get('jwtToken')}`;
+        }
+        return config;
+    },
+    error => {
+        return Promise.reject(error);
+    }
+);
 
 export function get (url, options) {
     const config = { headers, ...options };

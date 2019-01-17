@@ -8,6 +8,7 @@ import {
     SET_USER_AUTH_ERRORS
 } from '../action-constants/user';
 import analytics from 'services/analytics';
+import cookie from 'js-cookie';
 
 
 export const setAccessToken = token => ({
@@ -22,6 +23,7 @@ export const setUserAuthErrors = errors => ({
 
 export const registerUser = (userProps) => (dispatch, getState) => {
     return platform.signup(userProps).then(payload => {
+        cookie.set("jwtToken", payload.token, {expires: 30}); // Expire in 30 days
         dispatch(setAccessToken(payload.token));
 
         analytics.trackSignup(payload.user);
@@ -36,6 +38,7 @@ export const registerUser = (userProps) => (dispatch, getState) => {
 
 export const loginUser = (userProps) => (dispatch, getState) => {
     return platform.login(userProps).then(payload => {
+        cookie.set("jwtToken", payload.token, {expires: 30}); // Expire in 30 days
         dispatch(setAccessToken(payload.token));
 
         analytics.trackLogin(payload.user);

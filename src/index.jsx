@@ -6,12 +6,14 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { ConnectedRouter, routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
+import cookie from 'js-cookie';
 import thunk from 'redux-thunk';
 
 import createRootReducer from './shared/state/reducers';
 import ThemeProvider from './shared/theme/futura/ThemeProvider';
 import App from './screens/App/App';
 import analytics from 'services/analytics';
+import { setAccessToken } from 'shared/state/actions/user';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -27,6 +29,8 @@ const store = createStore(
         )
     )
 );
+
+if (cookie.get("jwtToken")) store.dispatch(setAccessToken(cookie.get("jwtToken")));
 
 // Track pageviews for analytics and scroll to
 // top of page whenever a new location loads.

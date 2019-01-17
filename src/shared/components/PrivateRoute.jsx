@@ -8,10 +8,6 @@ const PrivateRoute = ({ component: Component, isAuthLoading, accessToken, ...res
 
     if (isAuthLoading) return <div />;
 
-    // Juan remove
-    console.log("Redirecting");
-    console.log(rest);
-
     return (
         <Route
             {...rest}
@@ -24,7 +20,7 @@ const PrivateRoute = ({ component: Component, isAuthLoading, accessToken, ...res
     );
 };
 
-export default connect(state => ({
+export default connect((state, ownProps) => ({
     isAuthLoading: state.user.isAuthLoading,
     accessToken: state.user.accessToken
 }))(PrivateRoute);
